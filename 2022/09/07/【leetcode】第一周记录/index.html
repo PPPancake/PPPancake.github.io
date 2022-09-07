@@ -170,11 +170,11 @@
         
 
         <div class="article-content markdown-body">
-            <h2 id="220906-二分查找"><a href="#220906-二分查找" class="headerlink" title="220906-二分查找"></a>220906-二分查找</h2><h3 id="二分法的前提条件"><a href="#二分法的前提条件" class="headerlink" title="二分法的前提条件"></a>二分法的前提条件</h3><ul>
+            <h2 id="220906-二分查找"><a href="#220906-二分查找" class="headerlink" title="220906-二分查找"></a>220906-二分查找</h2><h3 id="1-前提条件"><a href="#1-前提条件" class="headerlink" title="1. 前提条件"></a>1. 前提条件</h3><ul>
 <li>元素唯一</li>
 <li>有序</li>
 </ul>
-<h3 id="区间定义的两种方法（还需体会）"><a href="#区间定义的两种方法（还需体会）" class="headerlink" title="区间定义的两种方法（还需体会）"></a>区间定义的两种方法（还需体会）</h3><ol>
+<h3 id="2-区间定义的两种方法（还需体会）"><a href="#2-区间定义的两种方法（还需体会）" class="headerlink" title="2. 区间定义的两种方法（还需体会）"></a>2.<mark> 区间定义的两种方法</mark>（还需体会）</h3><ol>
 <li><p>[left, right] 左闭右闭</p>
 <ul>
 <li>while (left &lt;= right) 要使用 &lt;= ，因为left == right是有意义的，所以使用 &lt;=</li>
@@ -193,18 +193,18 @@
 </ul>
 </li>
 </ol>
-<h3 id="二分查找代码"><a href="#二分查找代码" class="headerlink" title="二分查找代码"></a>二分查找代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span>  <span class="title">search</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp;  nums, <span class="keyword">int</span>  target)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> y = nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(x &lt;= y) &#123;</span><br><span class="line"><span class="keyword">int</span> m = (x+y)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(target == nums[m]) <span class="keyword">return</span> m;</span><br><span class="line">        <span class="keyword">if</span>(target &lt; nums[m]) y = m<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">if</span>(target &gt; nums[m]) x = m+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-CPP代码"><a href="#3-CPP代码" class="headerlink" title="3. CPP代码"></a>3. CPP代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span>  <span class="title">search</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp;  nums, <span class="keyword">int</span>  target)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> y = nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(x &lt;= y) &#123;</span><br><span class="line"><span class="keyword">int</span> m = (x+y)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(target == nums[m]) <span class="keyword">return</span> m;</span><br><span class="line">        <span class="keyword">if</span>(target &lt; nums[m]) y = m<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">if</span>(target &gt; nums[m]) x = m+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="额外的知识"><a href="#额外的知识" class="headerlink" title="额外的知识"></a>额外的知识</h3><ul>
-<li>不能用（left+right）/2形式，当left和right都是int，两个值的初始值都超过int限定大小的一半，那么left+right就会发生溢出，所以应该用left+(right-left)/2来防止求中值时候的溢出。</li>
-</ul>
-<h3 id="相关题目"><a href="#相关题目" class="headerlink" title="相关题目"></a>相关题目</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-search/?envType=study-plan&id=suan-fa-ru-men" >704. 二分查找<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="4-相关题目"><a href="#4-相关题目" class="headerlink" title="4. 相关题目"></a>4. 相关题目</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-search/?envType=study-plan&id=suan-fa-ru-men" >704. 二分查找<i class="fas fa-external-link-alt"></i></a></p>
 <p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/first-bad-version/?envType=study-plan&id=suan-fa-ru-men" >278. 第一个错误的版本<i class="fas fa-external-link-alt"></i></a></p>
 <p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/search-insert-position/?envType=study-plan&id=suan-fa-ru-men" >35. 搜索插入位置<i class="fas fa-external-link-alt"></i></a></p>
 <blockquote>
 <p>需要额外考虑插入相同元素的情况</p>
 </blockquote>
-<h2 id="220907-双指针"><a href="#220907-双指针" class="headerlink" title="220907-双指针"></a>220907-双指针</h2><h3 id="相关题目-1"><a href="#相关题目-1" class="headerlink" title="相关题目"></a>相关题目</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/squares-of-a-sorted-array/?envType=study-plan&id=suan-fa-ru-men" >977. 有序数组的平方<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="5-额外学到"><a href="#5-额外学到" class="headerlink" title="5. 额外学到"></a>5. 额外学到</h3><ul>
+<li>不能用（left+right）/2形式，当left和right都是int，两个值的初始值都超过int限定大小的一半，那么left+right就会发生溢出，所以应该用left+(right-left)/2来防止求中值时候的溢出。</li>
+</ul>
+<h2 id="220907-双指针"><a href="#220907-双指针" class="headerlink" title="220907-双指针"></a>220907-双指针</h2><h3 id="1-相关题目"><a href="#1-相关题目" class="headerlink" title="1. 相关题目"></a>1. 相关题目</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/squares-of-a-sorted-array/?envType=study-plan&id=suan-fa-ru-men" >977. 有序数组的平方<i class="fas fa-external-link-alt"></i></a></p>
 <blockquote>
 <p>进阶要求：时间复杂度为O(n)——&gt;使用双指针</p>
 </blockquote>
@@ -213,14 +213,31 @@
 <p>至少3种方法<br>空间复杂度为O(1)原地解决？</p>
 </blockquote>
 <ol>
-<li><p>hash法</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= nums.<span class="built_in">size</span>() - <span class="number">1</span> ; i++) &#123;</span><br><span class="line">arr[(i+k)%nums.<span class="built_in">size</span>()] = nums[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><p>使用额外的数组</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= nums.<span class="built_in">size</span>() - <span class="number">1</span> ; i++) &#123;</span><br><span class="line">    arr[(i+k)%nums.<span class="built_in">size</span>()] = nums[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>缺点是需要建立一个新的数组</p>
+<p>缺点是需要建立一个新的数组。</p>
+<p>时间复杂度：O(n)；空间复杂度O(n)。</p>
 </li>
-<li><p>双指针法</p>
+<li><p>reverse方法</p>
+<p>基本思想是整个数组全部翻转后，再分段翻转，好处是不用设置额外的数组，但要小心k&gt;=nums.size()和k==0的情况，所以多写了一句<code>k = k % nums.size();</code></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rotate</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    k = k % nums.<span class="built_in">size</span>();</span><br><span class="line">    <span class="built_in">reverse</span>(nums, <span class="number">0</span>, nums.<span class="built_in">size</span>()<span class="number">-1</span>);</span><br><span class="line">    <span class="built_in">reverse</span>(nums, <span class="number">0</span>, k - <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">reverse</span>(nums, k, nums.<span class="built_in">size</span>()<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里是自己写了一个reverse函数，但后来了解到cpp中有**reverse(first, last)**函数，所以改成了：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rotate</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">    k = k % nums.<span class="built_in">size</span>();</span><br><span class="line">    <span class="built_in">reverse</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line">    <span class="built_in">reverse</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">begin</span>()+k);</span><br><span class="line">    <span class="built_in">reverse</span>(nums.<span class="built_in">begin</span>()+k, nums.<span class="built_in">end</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中，<strong>reverse函数翻转的范围是[first, last)。vector::begin()返回指向第一个元素的迭代器，vector::end()返回指向最后一个元素之后的元素的迭代器。</strong></p>
+<p>时间复杂度：O(n)；空间复杂度O(1)。</p>
+</li>
+<li><p><mark>环状替换</mark>（想不通啊啊啊）</p>
 </li>
 </ol>
+<h3 id="2-额外学到"><a href="#2-额外学到" class="headerlink" title="2. 额外学到"></a>2. 额外学到</h3><ul>
+<li><p>新建vector数组<code>vector&lt;int&gt; arr(nums.size(), 0);</code></p>
+</li>
+<li><p><code>nums.assign(newArr.begin(), newArr.end());</code>填充值，并适配到相应大小</p>
+</li>
+</ul>
 
         </div>
 
