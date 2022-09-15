@@ -175,12 +175,12 @@
 <p>本来想着用倒叙的暴力解法，在循环之前先过滤掉大于target的数，但这样的方法完完全全忽略了数组首部可能存在的负数。</p>
 <p>这道题有几种解法：</p>
 <ol>
-<li><p>首尾指针法（缩减搜索空间）：</p>
+<li><p>首尾指针法（缩减搜索空间）</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> j = numbers.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span>(numbers[i] + numbers[j] != target) &#123;</span><br><span class="line">    <span class="keyword">if</span>(numbers[i] + numbers[j] &gt; target) j--;</span><br><span class="line">    <span class="keyword">else</span> i++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这样一来，时间复杂度为O(n)，因为额外建立了长度为2的数组，空间复杂度为O(1)。</p>
 </li>
-<li><p>hashmap法（可以针对一般的无序数组）：</p>
+<li><p>hashmap法（可以针对一般的无序数组）</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">twoSum</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">v</span><span class="params">(<span class="number">2</span>)</span></span>;</span><br><span class="line">    unordered_map&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; map;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">        <span class="keyword">auto</span> found = map.<span class="built_in">find</span>(target - nums.<span class="built_in">at</span>(i));</span><br><span class="line">        <span class="keyword">if</span> (found != map.<span class="built_in">end</span>()) &#123;</span><br><span class="line">            v.<span class="built_in">at</span>(<span class="number">0</span>) = found-&gt;second + <span class="number">1</span>;</span><br><span class="line">            v.<span class="built_in">at</span>(<span class="number">1</span>) = i + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">return</span> v;</span><br><span class="line">        &#125;</span><br><span class="line">        map.<span class="built_in">insert</span>(pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;(nums.<span class="built_in">at</span>(i), i));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> v;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>时间复杂度O(n) ，空间复杂度O(n)。</p>
@@ -204,6 +204,29 @@
 <h3 id="额外学到"><a href="#额外学到" class="headerlink" title="额外学到"></a>额外学到</h3><ul>
 <li><input checked="" disabled="" type="checkbox"> unordered_map容器是使用hashTable实现的，平均而言，<strong>搜索、插入和删除</strong>的时间复杂度为 O(1)。</li>
 </ul>
+<h2 id="220914-双指针"><a href="#220914-双指针" class="headerlink" title="220914-双指针"></a>220914-双指针</h2><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-string/" >344. 反转字符串<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-words-in-a-string-iii/?envType=study-plan&id=suan-fa-ru-men" >557. 反转字符串中的单词 III<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="220915-双指针"><a href="#220915-双指针" class="headerlink" title="220915-双指针"></a>220915-双指针</h3><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/middle-of-the-linked-list/?envType=study-plan&id=suan-fa-ru-men" >876. 链表的中间结点<i class="fas fa-external-link-alt"></i></a></p>
+<ol>
+<li><p>单指针法</p>
+<p>双次遍历，第一次count，第二次指向中间节点。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">ListNode* i= head;</span><br><span class="line"><span class="keyword">while</span>(i != <span class="literal">NULL</span>) &#123;</span><br><span class="line">    count++;</span><br><span class="line">    i = i-&gt;next;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> mid = count/<span class="number">2</span>;</span><br><span class="line">ListNode* j = head;</span><br><span class="line"><span class="keyword">while</span>(mid--) &#123;</span><br><span class="line">    j = j-&gt;next;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> j;</span><br></pre></td></tr></table></figure>
+
+<p>时间复杂度为O(N)，空间复杂度为O(1)，只需要常数空间存放变量和指针。</p>
+</li>
+<li><p>建立指针数组法</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;ListNode*&gt; arr;</span><br><span class="line"><span class="keyword">while</span>(head != <span class="literal">NULL</span>) &#123;</span><br><span class="line">    arr.<span class="built_in">push_back</span>(head);</span><br><span class="line">    head = head-&gt;next;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> arr[arr.<span class="built_in">size</span>() / <span class="number">2</span>];</span><br></pre></td></tr></table></figure>
+
+<p>时间复杂度为O(N)，空间复杂度为O(N)。</p>
+</li>
+<li><p>快慢指针法</p>
+<p>slow指针走一步，fast指针走两步。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ListNode* slow = head;</span><br><span class="line">ListNode* fast = head;</span><br><span class="line"><span class="keyword">while</span>(fast != <span class="literal">NULL</span> &amp;&amp; fast-&gt;next != <span class="literal">NULL</span>) &#123;</span><br><span class="line">    slow = slow-&gt;next;</span><br><span class="line">    fast = fast-&gt;next-&gt;next;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> slow;</span><br></pre></td></tr></table></figure>
+
+<p>时间复杂度为O(N)，空间复杂度为O(1)，只需常数空间存放两个指针。</p>
+</li>
+</ol>
+<p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-nth-node-from-end-of-list/?envType=study-plan&id=suan-fa-ru-men" >19. 删除链表的倒数第 N 个结点<i class="fas fa-external-link-alt"></i></a></p>
 <h2 id="周赛310"><a href="#周赛310" class="headerlink" title="周赛310"></a>周赛310</h2><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode.cn/problems/most-frequent-even-element/" >2404. 出现最频繁的偶数元素<i class="fas fa-external-link-alt"></i></a></p>
 <p>使用unordered_map。</p>
 
